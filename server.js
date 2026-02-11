@@ -14,21 +14,16 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-app.post("/chat", async (req, res) => {
-  const { text } = req.body;
+app.post("/chat", (req, res) => {
+  const { message } = req.body;
 
-  if (!text) {
-    return res.status(400).json({ error: "No text provided" });
-  }
-
-  // رد تجريبي (بدون AI حالياً)
   res.json({
-    reply: "سمعتك تقول: " + text,
+    reply: "وصلت رسالتك: " + message,
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
+  console.log(`Server running on port ${PORT}`);
 });
